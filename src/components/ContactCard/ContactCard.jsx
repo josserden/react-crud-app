@@ -59,7 +59,12 @@ export const ContactCard = ({ id, name, company, website, email, phone }) => {
         </Stack>
       </CardContent>
 
-      <CardActions>
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
         <Link
           to={id}
           state={{
