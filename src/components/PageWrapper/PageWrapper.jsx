@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Container } from '@mui/material';
 
-export const PageWrapper = ({ children }) => {
+export const PageWrapper = ({ children, ...props }) => {
   return (
     <Box
       component="section"
       sx={{
         py: '40px',
       }}
+      {...props}
     >
       <Container maxWidth="xl">{children}</Container>
     </Box>

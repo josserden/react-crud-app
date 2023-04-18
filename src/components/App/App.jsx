@@ -6,7 +6,7 @@ import { ROUTES } from 'utils/routes';
 import { HomePage } from 'page-components/HomePage';
 import { UserPage } from 'page-components/UserPage';
 import { UsersPage } from 'page-components/UsersPage';
-import { Layout } from 'components/Layout';
+import { Layout } from 'layout/Layout';
 
 export const App = () => {
   return (

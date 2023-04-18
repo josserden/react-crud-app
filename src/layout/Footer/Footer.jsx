@@ -10,6 +10,7 @@ export const Footer = () => {
       sx={{
         py: 2,
         borderTop: '1px solid #eaeaea',
+        backgroundColor: '#fff',
       }}
     >
       <Container maxWidth="xl">
@@ -17,7 +18,7 @@ export const Footer = () => {
           variant="body2"
           sx={{
             textAlign: 'center',
-            fontWeight: 700,
+            fontWeight: 500,
           }}
         >
           {new Date().getFullYear()} © React Crud App
