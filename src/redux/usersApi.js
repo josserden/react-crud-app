@@ -10,19 +10,10 @@ export const usersApi = createApi({
     getUsers: builder.query({
       query: () => ROUTES.USERS,
     }),
-
     getUser: builder.query({
       query: userId => `${ROUTES.USERS}/${userId}`,
-      transformResponse: response => {
-        const user = JSON.parse(response);
-
-        return {
-          ...user,
-          address: `${user.address.street}, ${user.address.city}`,
-        };
-      },
     }),
   }),
 });
 
-export const { useGetUsersQuery } = usersApi;
+export const { useGetUsersQuery, useGetUserQuery } = usersApi;

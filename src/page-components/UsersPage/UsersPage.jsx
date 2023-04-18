@@ -10,11 +10,19 @@ export const UsersPage = () => {
   const { data: users = [], error, isLoading } = useGetUsersQuery();
 
   if (isLoading) {
-    return <PageWrapper>Loading...</PageWrapper>;
+    return (
+      <PageWrapper>
+        <h2>Loading...</h2>
+      </PageWrapper>
+    );
   }
 
   if (error) {
-    return <PageWrapper>Error: {error}</PageWrapper>;
+    return (
+      <PageWrapper>
+        <h2>Error: {error}</h2>
+      </PageWrapper>
+    );
   }
 
   return (
