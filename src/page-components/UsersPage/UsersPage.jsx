@@ -1,12 +1,10 @@
-import { useGetUsersQuery } from 'redux/usersApi';
 import { Stack } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
+import { useGetUsersQuery } from 'redux/usersApi';
 
-import { User } from 'components/User';
-import { PageWrapper } from 'components/PageWrapper';
 import { Filter } from 'components/Filter';
+import { PageWrapper } from 'components/PageWrapper';
+import { User } from 'components/User';
 import { UsersTable } from 'components/UsersTable';
-import { Link } from 'react-router-dom';
 
 export const UsersPage = () => {
   const { data: users = [], error, isLoading } = useGetUsersQuery();
