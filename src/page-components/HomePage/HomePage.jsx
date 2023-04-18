@@ -1,7 +1,5 @@
 import { Stack } from '@mui/material';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Unstable_Grid2';
 
 import { HeroDescription } from 'components/HeroDescription';
