@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ROUTES } from 'utils/routes';
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
@@ -7,11 +8,11 @@ export const usersApi = createApi({
   }),
   endpoints: builder => ({
     getUsers: builder.query({
-      query: () => '/users',
+      query: () => ROUTES.USERS,
     }),
 
     getUser: builder.query({
-      query: userId => `/users/${userId}`,
+      query: userId => `${ROUTES.USERS}/${userId}`,
       transformResponse: response => {
         const user = JSON.parse(response);
 
