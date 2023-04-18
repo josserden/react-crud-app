@@ -1,13 +1,14 @@
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import { useSelector } from 'react-redux';
 import { getFilter } from 'redux/filterSlice';
 import { useGetUsersQuery } from 'redux/usersApi';
 
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+
 import { Filter } from 'components/Filter';
+import { User } from 'components/HeroDescription/User';
 import { PageWrapper } from 'components/PageWrapper';
 import { Paragraph } from 'components/Paragraph';
-import { User } from 'components/HeroDescription/User';
 import { UsersTable } from 'components/UsersTable';
 
 export const UsersPage = () => {
