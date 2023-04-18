@@ -1,8 +1,12 @@
+import { useGetUsersQuery } from 'redux/usersApi';
+import { Stack } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 
-import { ContactCard } from 'components/ContactCard';
+import { User } from 'components/User';
 import { PageWrapper } from 'components/PageWrapper';
-import { useGetUsersQuery } from 'redux/usersApi';
+import { Filter } from 'components/Filter';
+import { UsersTable } from 'components/UsersTable';
+import { Link } from 'react-router-dom';
 
 export const UsersPage = () => {
   const { data: users = [], error, isLoading } = useGetUsersQuery();
@@ -17,15 +21,15 @@ export const UsersPage = () => {
 
   return (
     <PageWrapper>
-      <h1>Users Page</h1>
+      <Stack spacing={6}>
+        <Filter />
 
-      <Grid container spacing={3}>
-        {users.map(user => (
-          <Grid xs={4} key={user.id}>
-            <ContactCard {...user} />
-          </Grid>
-        ))}
-      </Grid>
+        <UsersTable>
+          {users.map(user => (
+            <User key={user.id} {...user} />
+          ))}
+        </UsersTable>
+      </Stack>
     </PageWrapper>
   );
 };
