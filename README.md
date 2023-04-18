@@ -2,17 +2,6 @@
 
 A simple React application that allows users to view and manage a list of users.
 
-## Table of Contents
-
-- [React CRUD Application](#react-crud-application)
-  - [Table of Contents](#table-of-contents)
-  - [Description](#description)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Technologies Used](#technologies-used)
-  - [Contributing](#contributing)
-  - [License](#license)
-
 ## Description
 
 This application has three main pages:
