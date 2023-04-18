@@ -10,6 +10,7 @@ import { User } from 'components/HeroDescription/User';
 import { PageWrapper } from 'components/PageWrapper';
 import { Paragraph } from 'components/Paragraph';
 import { UsersTable } from 'components/UsersTable';
+import { Modal } from 'components/Modal';
 
 export const UsersPage = () => {
   const { data: users = [], error, isLoading } = useGetUsersQuery();
@@ -43,7 +44,16 @@ export const UsersPage = () => {
   return (
     <PageWrapper>
       <Stack spacing={6}>
-        <Filter />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'end',
+          }}
+        >
+          <Modal />
+          <Filter />
+        </Box>
 
         {normalizedUsers.length > 0 && (
           <UsersTable>

@@ -19,10 +19,7 @@ export const Filter = () => {
       component="form"
       sx={{
         '& > :not(style)': {
-          display: 'block',
-          m: 1,
           width: '25ch',
-          ml: 'auto',
         },
       }}
       autoComplete="off"
