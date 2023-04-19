@@ -99,9 +99,9 @@ export const UserPage = () => {
     );
   }
 
-  // if (error) {
-  //   return <Navigate to={ROUTES.HOME} replace />;
-  // }
+  if (error) {
+    return <Navigate to={ROUTES.HOME} replace />;
+  }
 
   return (
     <PageWrapper>
