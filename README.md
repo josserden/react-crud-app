@@ -14,7 +14,8 @@ This application has three main pages:
 3. A user details page that displays all of the data for the selected user.
    Users can navigate to the next or previous user.
 
-The user data is retrieved from https://jsonplaceholder.typicode.com/users and
+The user data is retrieved from
+[https://6251bfb67f7fa1b1ddde85d8.mockapi.io/api/users](https://mockapi.io/)and
 stored in a Redux store using Redux Toolkit. Users can be added, edited, and
 deleted using a modal form with validation for empty fields. The form for adding
 a new user starts with a default structure. Edited records are displayed in a
