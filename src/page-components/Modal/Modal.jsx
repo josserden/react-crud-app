@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useCreateUserMutation } from 'redux/usersApi';
+import toast from 'react-hot-toast';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -7,7 +8,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { Form } from 'page-components/Form';
+import { Form } from 'components/Form';
 
 export const Modal = () => {
   const [open, setOpen] = useState(false);
@@ -19,9 +20,11 @@ export const Modal = () => {
   const onSubmit = async user => {
     try {
       await createUser(user);
+      toast.success('User created successfully');
       setOpen(false);
     } catch (error) {
       console.error(error);
+      toast.error('Something went wrong');
     }
   };
 

@@ -1,5 +1,6 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { useDeleteUserMutation, useGetUserQuery } from 'redux/usersApi';
+import toast from 'react-hot-toast';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -42,6 +43,14 @@ export const UserPage = () => {
   } = user;
 
   const handleGoBack = location.state?.from ?? ROUTES.USERS;
+  const handleUserDelete = async () => {
+    try {
+      await deleteUser(userId);
+      toast.success('User deleted successfully');
+    } catch (error) {
+      toast.error('Something went wrong');
+    }
+  };
 
   if (isLoading) {
     return (
@@ -75,13 +84,7 @@ export const UserPage = () => {
           aria-label="Disabled elevation buttons"
         >
           <Button>Edit</Button>
-          <Button
-            onClick={() => {
-              deleteUser(userId);
-            }}
-          >
-            Delete
-          </Button>
+          <Button onClick={handleUserDelete}>Delete</Button>
         </ButtonGroup>
       </Box>
 

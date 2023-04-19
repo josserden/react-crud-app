@@ -10,7 +10,7 @@ import { User } from 'components/HeroDescription/User';
 import { PageWrapper } from 'components/PageWrapper';
 import { Paragraph } from 'components/Paragraph';
 import { UsersTable } from 'components/UsersTable';
-import { Modal } from 'components/Modal';
+import { Modal } from 'page-components/Modal';
 
 export const UsersPage = () => {
   const { data: users = [], error, isLoading } = useGetUsersQuery();
@@ -70,9 +70,7 @@ export const UsersPage = () => {
               justifyContent: 'center',
             }}
           >
-            <Paragraph>
-              No users found. Please try another search term.
-            </Paragraph>
+            <Paragraph>There are no users...</Paragraph>
           </Box>
         )}
       </Stack>
