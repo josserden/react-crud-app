@@ -30,6 +30,14 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
+    updateUser: builder.mutation({
+      query: ({ userId, body }) => ({
+        url: `${ROUTES.USERS}/${userId}`,
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['Users'],
+    }),
   }),
 });
 
