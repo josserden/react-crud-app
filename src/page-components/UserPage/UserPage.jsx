@@ -1,5 +1,17 @@
-import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
-import { useDeleteUserMutation, useGetUserQuery } from 'redux/usersApi';
+import { useState } from 'react';
+import {
+  Link,
+  Navigate,
+  useLocation,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
+
+import {
+  useDeleteUserMutation,
+  useGetUserQuery,
+  useGetUsersQuery,
+} from 'redux/usersApi';
 import toast from 'react-hot-toast';
 
 import Box from '@mui/material/Box';
@@ -26,8 +38,11 @@ const Item = styled(Paper)(({ theme }) => ({
 export const UserPage = () => {
   const { userId } = useParams();
   const [deleteUser] = useDeleteUserMutation();
+  const [idx, setIdx] = useState(Number(userId));
+  const navigate = useNavigate();
 
-  const { data: user = {}, error, isLoading } = useGetUserQuery(userId);
+  const { data: user = {}, error, isLoading } = useGetUserQuery(idx);
+  const { data: users } = useGetUsersQuery();
   const location = useLocation();
   const {
     country,
@@ -45,11 +60,28 @@ export const UserPage = () => {
   const handleGoBack = location.state?.from ?? ROUTES.USERS;
   const handleUserDelete = async () => {
     try {
-      await deleteUser(userId);
+      await deleteUser(idx);
       toast.success('User deleted successfully');
     } catch (error) {
       toast.error('Something went wrong');
     }
+  };
+
+  const isFirstUser = idx === 1;
+  const isLastUser = idx === users?.length;
+
+  const handlePrevUser = () => {
+    if (isFirstUser) return;
+
+    setIdx(idx - 1);
+    navigate(`${ROUTES.USERS}/${idx - 1}`);
+  };
+
+  const handleNextUser = () => {
+    if (isLastUser) return;
+
+    setIdx(idx + 1);
+    navigate(`${ROUTES.USERS}/${idx + 1}`);
   };
 
   if (isLoading) {
@@ -140,6 +172,32 @@ export const UserPage = () => {
           </Item>
         </Grid>
       </Grid>
+
+      <Box
+        sx={{
+          paddingTop: '4rem',
+          paddingBottom: '4rem',
+
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '1rem',
+        }}
+      >
+        <ButtonGroup
+          disableElevation
+          variant="contained"
+          aria-label="Disabled elevation buttons"
+        >
+          <Button disabled={isFirstUser} onClick={handlePrevUser}>
+            Prev
+          </Button>
+
+          <Button disabled={isLastUser} onClick={handleNextUser}>
+            Next
+          </Button>
+        </ButtonGroup>
+      </Box>
     </PageWrapper>
   );
 };
