@@ -39,7 +39,6 @@ export const UserPage = () => {
   const { userId } = useParams();
   const [deleteUser] = useDeleteUserMutation();
   const [idx, setIdx] = useState(Number(userId));
-  const [currentIdx, setCurrentIdx] = useState(0);
 
   const navigate = useNavigate();
 
