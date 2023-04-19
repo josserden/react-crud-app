@@ -58,7 +58,7 @@ export const UserPage = () => {
     companyBs,
   } = user;
 
-  const isFirstUser = users[idx - 1];
+  const isFirstUser = users.findIndex(({ id }) => id !== idx.toString());
   const isLastUser =
     users.findIndex(({ id }) => id === idx.toString()) === users.length - 1;
 
@@ -99,9 +99,9 @@ export const UserPage = () => {
     );
   }
 
-  if (error) {
-    return <Navigate to={ROUTES.HOME} replace />;
-  }
+  // if (error) {
+  //   return <Navigate to={ROUTES.HOME} replace />;
+  // }
 
   return (
     <PageWrapper>
@@ -196,11 +196,11 @@ export const UserPage = () => {
           variant="contained"
           aria-label="Disabled elevation buttons"
         >
-          <Button disabled={isFirstUser} onClick={handlePrevUser}>
+          <Button onClick={handlePrevUser} disabled={isFirstUser}>
             Prev
           </Button>
 
-          <Button disabled={isLastUser} onClick={handleNextUser}>
+          <Button onClick={handleNextUser} disabled={isLastUser}>
             Next
           </Button>
         </ButtonGroup>
