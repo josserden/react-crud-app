@@ -4,7 +4,7 @@ import { ROUTES } from 'utils/routes';
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: 'https://6251bfb67f7fa1b1ddde85d8.mockapi.io/api',
   }),
   tagTypes: ['Users'],
   endpoints: builder => ({
@@ -23,7 +23,7 @@ export const usersApi = createApi({
       }),
       invalidatesTags: ['Users'],
     }),
-    deleteContact: builder.mutation({
+    deleteUser: builder.mutation({
       query: userId => ({
         url: `${ROUTES.USERS}/${userId}`,
         method: 'DELETE',
@@ -37,5 +37,5 @@ export const {
   useGetUsersQuery,
   useGetUserQuery,
   useCreateUserMutation,
-  useDeleteContactMutation,
+  useDeleteUserMutation,
 } = usersApi;

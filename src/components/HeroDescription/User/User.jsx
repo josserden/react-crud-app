@@ -34,7 +34,7 @@ export const User = ({ id, name, username }) => {
 };
 
 User.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
 };

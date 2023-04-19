@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import { ROUTES } from 'utils/routes';
 
@@ -20,6 +20,8 @@ export const App = () => {
           <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
         </Route>
       </Routes>
+
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };

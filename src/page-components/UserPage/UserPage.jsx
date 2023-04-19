@@ -1,8 +1,9 @@
-import { useLocation, useParams, Link, Navigate } from 'react-router-dom';
-import { useGetUserQuery } from 'redux/usersApi';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
+import { useDeleteUserMutation, useGetUserQuery } from 'redux/usersApi';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -23,9 +24,22 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export const UserPage = () => {
   const { userId } = useParams();
+  const [deleteUser] = useDeleteUserMutation();
+
   const { data: user = {}, error, isLoading } = useGetUserQuery(userId);
   const location = useLocation();
-  const { address, company, email, id, name, phone, username, website } = user;
+  const {
+    country,
+    city,
+    company,
+    email,
+    id,
+    name,
+    phone,
+    username,
+    website,
+    companyBs,
+  } = user;
 
   const handleGoBack = location.state?.from ?? ROUTES.USERS;
 
@@ -45,12 +59,30 @@ export const UserPage = () => {
     <PageWrapper>
       <Box
         sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           marginBottom: '2rem',
         }}
         component={Link}
         to={handleGoBack}
       >
         <Button variant="contained">GO BACK</Button>
+
+        <ButtonGroup
+          disableElevation
+          variant="contained"
+          aria-label="Disabled elevation buttons"
+        >
+          <Button>Edit</Button>
+          <Button
+            onClick={() => {
+              deleteUser(userId);
+            }}
+          >
+            Delete
+          </Button>
+        </ButtonGroup>
       </Box>
 
       <Box
@@ -81,9 +113,8 @@ export const UserPage = () => {
         <Grid xs={6}>
           <Item>
             <Stack spacing={2}>
-              <strong>Address:</strong> {address.city}, {address.street},
-              <strong>Zip:</strong> {address.zipcode}
-              <strong> Suite:</strong> {address.suite}
+              <strong>City:</strong> {city}
+              <strong>Country:</strong> {country}
             </Stack>
           </Item>
         </Grid>
@@ -91,9 +122,8 @@ export const UserPage = () => {
         <Grid xs={6}>
           <Item>
             <Stack spacing={2}>
-              <strong>Company:</strong> {company.name}
-              <strong>Catch Phrase:</strong> {company.catchPhrase},
-              <strong> BS:</strong> {company.bs}
+              <strong>Company:</strong> {company}
+              <strong> BS:</strong> {companyBs}
             </Stack>
           </Item>
         </Grid>
