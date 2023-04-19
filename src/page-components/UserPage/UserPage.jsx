@@ -39,11 +39,12 @@ export const UserPage = () => {
   const { userId } = useParams();
   const [deleteUser] = useDeleteUserMutation();
   const [idx, setIdx] = useState(Number(userId));
+  const [currentIdx, setCurrentIdx] = useState(0);
 
   const navigate = useNavigate();
 
   const { data: user = {}, error, isLoading } = useGetUserQuery(idx);
-  const { data: users } = useGetUsersQuery();
+  const { data: users = [] } = useGetUsersQuery();
   const location = useLocation();
   const {
     country,
@@ -58,8 +59,9 @@ export const UserPage = () => {
     companyBs,
   } = user;
 
-  const isFirstUser = idx === 1;
-  const isLastUser = idx === users?.length;
+  const isFirstUser = users[idx - 1];
+  const isLastUser =
+    users.findIndex(({ id }) => id === idx.toString()) === users.length - 1;
 
   const handleGoBack = location.state?.from ?? ROUTES.USERS;
 
