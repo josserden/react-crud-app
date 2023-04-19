@@ -35,7 +35,7 @@ export const Header = () => {
             py: 1,
           }}
         >
-          <Typography variant="h3" noWrap component="a" href={ROUTES.HOME}>
+          <Typography variant="h3" noWrap>
             <GiGrain
               style={{
                 color: 'yellow',
