@@ -39,6 +39,7 @@ export const UserPage = () => {
   const { userId } = useParams();
   const [deleteUser] = useDeleteUserMutation();
   const [idx, setIdx] = useState(Number(userId));
+
   const navigate = useNavigate();
 
   const { data: user = {}, error, isLoading } = useGetUserQuery(idx);
@@ -52,12 +53,16 @@ export const UserPage = () => {
     id,
     name,
     phone,
-    username,
+    nickname,
     website,
     companyBs,
   } = user;
 
+  const isFirstUser = idx === 1;
+  const isLastUser = idx === users?.length;
+
   const handleGoBack = location.state?.from ?? ROUTES.USERS;
+
   const handleUserDelete = async () => {
     try {
       await deleteUser(idx);
@@ -66,9 +71,6 @@ export const UserPage = () => {
       toast.error('Something went wrong');
     }
   };
-
-  const isFirstUser = idx === 1;
-  const isLastUser = idx === users?.length;
 
   const handlePrevUser = () => {
     if (isFirstUser) return;
@@ -82,6 +84,10 @@ export const UserPage = () => {
 
     setIdx(idx + 1);
     navigate(`${ROUTES.USERS}/${idx + 1}`);
+  };
+
+  const handleUserEdit = () => {
+    toast.error('Not implemented yet :(');
   };
 
   if (isLoading) {
@@ -115,7 +121,7 @@ export const UserPage = () => {
           variant="contained"
           aria-label="Disabled elevation buttons"
         >
-          <Button>Edit</Button>
+          <Button onClick={handleUserEdit}>Edit</Button>
           <Button onClick={handleUserDelete}>Delete</Button>
         </ButtonGroup>
       </Box>
@@ -140,7 +146,7 @@ export const UserPage = () => {
         </Typography>
 
         <Typography variant="overline" display="block" gutterBottom>
-          @{username}
+          @{nickname}
         </Typography>
       </Box>
 

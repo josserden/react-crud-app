@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 
 import { ROUTES } from 'utils/routes';
 
-export const User = ({ id, name, username }) => {
+export const User = ({ id, name, nickname }) => {
   const location = useLocation();
 
   return (
@@ -18,7 +18,7 @@ export const User = ({ id, name, username }) => {
     >
       <TableCell>{id}</TableCell>
       <TableCell>{name}</TableCell>
-      <TableCell>{username}</TableCell>
+      <TableCell>{nickname}</TableCell>
       <TableCell>
         <Button
           variant="outlined"
@@ -36,5 +36,5 @@ export const User = ({ id, name, username }) => {
 User.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
 };

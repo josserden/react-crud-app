@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 
 import { Filter } from 'components/Filter';
-import { User } from 'components/HeroDescription/User';
+import { User } from 'components/User';
 import { PageWrapper } from 'components/PageWrapper';
 import { Paragraph } from 'components/Paragraph';
 import { UsersTable } from 'components/UsersTable';
